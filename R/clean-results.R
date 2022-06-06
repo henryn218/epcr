@@ -103,8 +103,8 @@ set_data_types <- function(resp_contents) {
 
   purrr::imap_dfc(resp_contents,
                   ~ {
-                    if (any(.y == names(type_map))) {
-                      type_fun <- type_map[[which(.y == names(type_map))]]
+                    if (any(.y == names(data_types))) {
+                      type_fun <- data_types[[which(.y == names(data_types))]]
                       type_fun(.x)
                     } else {
                       warning("Column header not recognised, not setting data type")
