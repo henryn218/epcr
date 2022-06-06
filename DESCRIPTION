@@ -2,10 +2,18 @@ Package: epcr
 Type: Package
 Title: Download Data for England and Wales from the MHCLG EPC and DEC Data API 
 Version: 0.1.0
-Authors@R: person(
+Authors@R: c(person(
     "Henry", "Naish", email = "henry@policyinpractice.co.uk", 
     role = c("aut", "cre")
-    )
+    ),
+    person(
+    "Jim", "Gardner", email = "jimmahgee@gmail.com", 
+    role = c("aut")
+    ),
+    person(
+    "Policy in Practice", email = "hello@policyinpractice.co.uk", 
+    role = c("fnd")
+    ))
 Description: A package for downloading EPC and DEC data for addresses in England 
     and Wales from the API provided by MHCLG.
 License: MIT + file LICENSE
