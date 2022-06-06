@@ -2,15 +2,18 @@ BASE_URL <- "https://epc.opendatacommunities.org/api/v1"
 
 #' Query EPC web API
 #'
-#' Makes an HTTP get request to retrieve EPC data.
+#' Makes an HTTP get request to retrieve EPC data from a user specified URL.
 #'
 #' @param url URL for the EPC API
 #'
-#' @return A list object of class 'epc_api' holding a data frame containing the data and
+#' @return A list containing a list object of content data, and
 #' a list object containing the API response data.
 #'
 #' @examples
+#' # Default domestic query
 #' query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search")
+#' # Addresses containing "Liverpool" with an energy band of C
+#' query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search?address=liverpool&energy-band=c")
 #'
 #' @importFrom httr GET add_headers user_agent http_error status_code http_type content
 #' @importFrom jsonlite fromJSON
@@ -22,7 +25,7 @@ query_epc_data <- function(url) {
                     httr::add_headers(Authorization = paste("Basic",
                                                             Sys.getenv("EPC_API_KEY")),
                                       Accept = "application/json"),
-                    httr::user_agent("https://github.com/policy-in-practice/pipR"))
+                    httr::user_agent("https://github.com/hamstr147/epcr"))
 
   if (httr::http_error(resp)) {
     stop(

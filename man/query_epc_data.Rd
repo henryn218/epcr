@@ -10,13 +10,16 @@ query_epc_data(url)
 \item{url}{URL for the EPC API}
 }
 \value{
-A list object of class 'epc_api' holding a data frame containing the data and
+A list containing a list object of content data, and
 a list object containing the API response data.
 }
 \description{
-Makes an HTTP get request to retrieve EPC data.
+Makes an HTTP get request to retrieve EPC data from a user specified URL.
 }
 \examples{
+# Default domestic query
 query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search")
+# Addresses containing "Liverpool" with an energy band of C
+query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search?address=liverpool&energy-band=c")
 
 }
