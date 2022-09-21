@@ -10,10 +10,10 @@ BASE_URL <- "https://epc.opendatacommunities.org/api/v1"
 #' a list object containing the API response data.
 #'
 #' @examples
+#' \dontrun{
 #' # Default domestic query
 #' query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search")
-#' # Addresses containing "Liverpool" with an energy band of C
-#' query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search?address=liverpool&energy-band=c")
+#' }
 #'
 #' @importFrom httr GET add_headers user_agent http_error status_code http_type content
 #' @importFrom jsonlite fromJSON

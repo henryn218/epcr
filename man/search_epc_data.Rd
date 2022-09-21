@@ -32,7 +32,9 @@ Queries the EPC API to retrieve EPC data filtered for user-specified
 parameters.
 }
 \examples{
+\dontrun{
 search_epc_data("domestic", postcode = "SW1A")
 search_epc_data("domestic", postcode = "TW1 4PG", size = 2, paginated = TRUE)
+}
 
 }

@@ -20,8 +20,10 @@
 #' a list containing API response objects for each page.
 #'
 #' @examples
+#' \dontrun{
 #' search_epc_data("domestic", postcode = "SW1A")
 #' search_epc_data("domestic", postcode = "TW1 4PG", size = 2, paginated = TRUE)
+#' }
 #'
 #' @importFrom purrr map_dfr map
 #' @export
@@ -95,7 +97,9 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
 #' a list object containing the API response data.
 #'
 #' @examples
+#' \dontrun{
 #' get_data_for_lmk_key("domestic", "certificate", "887164559962017031316220145408873")
+#' }
 #'
 #' @export
 #'
@@ -114,7 +118,9 @@ get_data_for_lmk_key <- function(record_type, api_type, lmk_key) {
 #' Retrieve an EPC certificate
 #'
 #' @examples
+#' \dontrun{
 #' get_epc_certificate("domestic", "887164559962017031316220145408873")
+#' }
 #'
 #' @rdname get_data_for_lmk_key
 #' @export
@@ -129,7 +135,9 @@ get_epc_certificate <- function(record_type, lmk_key) {
 #' Retrieve EPC recommendations
 #'
 #' @examples
+#' \dontrun{
 #' get_epc_recommendations("domestic", "887164559962017031316220145408873")
+#' }
 #'
 #' @rdname get_data_for_lmk_key
 #' @export

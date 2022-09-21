@@ -30,10 +30,16 @@ functions for \code{get_data_for_lmk_key} with \code{api_type} set to "certifica
 and "recommendations" respectively.
 }
 \examples{
+\dontrun{
 get_data_for_lmk_key("domestic", "certificate", "887164559962017031316220145408873")
+}
 
+\dontrun{
 get_epc_certificate("domestic", "887164559962017031316220145408873")
+}
 
+\dontrun{
 get_epc_recommendations("domestic", "887164559962017031316220145408873")
+}
 
 }

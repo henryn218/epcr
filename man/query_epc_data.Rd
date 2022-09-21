@@ -17,9 +17,9 @@ a list object containing the API response data.
 Makes an HTTP get request to retrieve EPC data from a user specified URL.
 }
 \examples{
+\dontrun{
 # Default domestic query
 query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search")
-# Addresses containing "Liverpool" with an energy band of C
-query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search?address=liverpool&energy-band=c")
+}
 
 }
