@@ -43,8 +43,8 @@ query_epc_data <- function(url) {
     stop("API did not return json", call. = FALSE)
   }
 
-  cont <- httr::content(resp, "text", encoding = "UTF-8")
-  output <- ifelse(cont == "", "", jsonlite::fromJSON(cont))
+  output_json <- httr::content(resp, "text", encoding = "UTF-8")
+  output <- if (output_json == "") "" else jsonlite::fromJSON(output_json)
 
   list(
     response = resp,
