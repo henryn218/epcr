@@ -25,7 +25,7 @@ process_response <- function(parsed_resp) {
 
 }
 
-#' Sets data types in EPC APi result data frame
+#' Sets data types in EPC API result data frame
 #'
 #' @param resp A data frame containing the results of an EPC API query
 #'

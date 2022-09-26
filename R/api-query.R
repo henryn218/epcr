@@ -21,6 +21,7 @@ BASE_URL <- "https://epc.opendatacommunities.org/api/v1"
 #' @export
 query_epc_data <- function(url) {
 
+  check_api_key()
   resp <- httr::GET(url,
                     httr::add_headers(Authorization = paste("Basic",
                                                             Sys.getenv("EPC_API_KEY")),
@@ -30,8 +31,9 @@ query_epc_data <- function(url) {
   if (httr::http_error(resp)) {
     stop(
       sprintf(
-        "EPC API request failed [%s]",
-        httr::status_code(resp)
+        "EPC API request failed [%s: %s]",
+        httr::status_code(resp),
+        httr::content(resp)
       ),
       call. = FALSE
     )
@@ -41,9 +43,12 @@ query_epc_data <- function(url) {
     stop("API did not return json", call. = FALSE)
   }
 
+  cont <- httr::content(resp, "text", encoding = "UTF-8")
+  output <- ifelse(cont == "", "", jsonlite::fromJSON(cont))
+
   list(
     response = resp,
-    content = jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+    content = output
   )
 
 }
