@@ -2,7 +2,7 @@
 % Please edit documentation in R/clean-results.R
 \name{set_data_types}
 \alias{set_data_types}
-\title{Sets data types in EPC APi result data frame}
+\title{Sets data types in EPC API result data frame}
 \usage{
 set_data_types(resp_contents)
 }
@@ -14,6 +14,6 @@ A data frame containing the results of an EPC API query with data types
 set according to the API documentation
 }
 \description{
-Sets data types in EPC APi result data frame
+Sets data types in EPC API result data frame
 }
 \keyword{internal}

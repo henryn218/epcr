@@ -119,7 +119,7 @@ test_that("search_epc_data returns expected epc_api object", {
 
     expect_s3_class(output, "epc_api")
     expect_named(output, c("content", "response"))
-    expect_equal(output[["response"]][["page_1"]][["url"]],
+    expect_equal(output[["response"]][["url"]],
                  "https://epc.opendatacommunities.org/api/v1/non-domestic/search")
 
   })
@@ -150,7 +150,8 @@ test_that("search_epc_data returns response object with paginated query", {
                                       "multi-glaze-proportion",
                                       "lodgement-datetime",
                                       "yr1-renewables-co2",
-                                      "or-assessment-end-date")
+                                      "or-assessment-end-date",
+                                      "page")
                  )
             )
           )

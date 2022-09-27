@@ -37,11 +37,11 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
   if (!is.null(size)) {
     dots[["size"]] <- size
   } else if (paginated) {
-    size <- 25
+    size <- DEFAULT_PAGE_SIZE
   }
 
   stopifnot(
-    `Specified page size is greater than maximum of 5,000` = size <= 5000
+    `Specified page size is greater than maximum of 5,000` = size <= MAX_PAGE_SIZE
   )
 
   resp_list <- list()
@@ -52,7 +52,12 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
     url <- create_search_url(search_url, dots)
     resp <- run_epc_query(url)
 
-    if (length(resp[["content"]]) == 0) {
+    if (!paginated) {
+      resp_list[[1]] <- resp
+      break
+    }
+
+    if (nrow(resp[["content"]]) == 0 && i > 0) {
       break
     }
 
@@ -60,22 +65,31 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
     resp[["content"]]["page"] <- i
     resp_list[[paste0("page_", i)]] <- resp
 
-    if (nrow(resp[["content"]]) < size || !paginated) {
-      break
-    }
-
     from <- dots[["from"]]
     dots[["from"]] <- ifelse(is.null(from), size, from + size)
 
+    if (nrow(resp[["content"]]) < size || dots[["from"]] >= MAX_RESULT_SET) {
+      break
+    }
+
+    if (dots[["from"]] + size > MAX_RESULT_SET) {
+      dots[["size"]] <- MAX_RESULT_SET - dots[["from"]]
+    }
+
   }
 
-  output_list <- list(
-    content = purrr::map_dfr(resp_list, "content"),
-    response = purrr::map(resp_list, "response")
-  )
+  content_df <- purrr::map_dfr(resp_list, "content")
+  response_list <- if (paginated) {
+    purrr::map(resp_list, "response")
+  } else {
+    resp_list[[1]][["response"]]
+  }
 
   structure(
-    output_list,
+    list(
+      content = content_df,
+      response = response_list
+    ),
     class = "epc_api"
   )
 

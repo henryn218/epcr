@@ -9,11 +9,19 @@
 #'
 process_response <- function(parsed_resp) {
 
-  names(parsed_resp[["content"]][["rows"]]) <- gsub("-", "_",
-                                                    names(parsed_resp[["content"]][["rows"]]),
-                                                    fixed = TRUE)
+  if ("rows" %in% names(parsed_resp[["content"]])) {
 
-  result_df <- set_data_types(parsed_resp[["content"]][["rows"]])
+    names(parsed_resp[["content"]][["rows"]]) <- gsub("-", "_",
+                                                      names(parsed_resp[["content"]][["rows"]]),
+                                                      fixed = TRUE)
+
+    result_df <- set_data_types(parsed_resp[["content"]][["rows"]])
+
+  } else {
+
+    result_df <- data.frame()
+
+  }
 
   structure(
     list(

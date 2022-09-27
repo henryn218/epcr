@@ -1,4 +1,7 @@
 BASE_URL <- "https://epc.opendatacommunities.org/api/v1"
+MAX_PAGE_SIZE <- 5000
+DEFAULT_PAGE_SIZE <- 25
+MAX_RESULT_SET <- 10000
 
 #' Query EPC web API
 #'
