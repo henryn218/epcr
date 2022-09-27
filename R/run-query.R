@@ -52,12 +52,12 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
     url <- create_search_url(search_url, dots)
     resp <- run_epc_query(url)
 
-    if (!paginated) {
+    if (!paginated || nrow(resp[["content"]]) == 0 && i == 0) {
       resp_list[[1]] <- resp
       break
     }
 
-    if (nrow(resp[["content"]]) == 0 && i > 0) {
+    if (nrow(resp[["content"]]) == 0) {
       break
     }
 
@@ -79,7 +79,7 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
   }
 
   content_df <- purrr::map_dfr(resp_list, "content")
-  response_list <- if (paginated) {
+  response_list <- if (paginated && i > 0) {
     purrr::map(resp_list, "response")
   } else {
     resp_list[[1]][["response"]]
