@@ -7,14 +7,13 @@
 query_epc_data(url)
 }
 \arguments{
-\item{url}{URL for the EPC API}
+\item{url}{URL for the EPC API including the required query string}
 }
 \value{
-A list containing a list object of content data, and
-a list object containing the API response data.
+A list containing the data retrieved and API response
 }
 \description{
-Makes an HTTP get request to retrieve EPC data from a user specified URL.
+Makes an HTTP get request to retrieve EPC data from a specified URL.
 }
 \examples{
 \dontrun{

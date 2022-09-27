@@ -5,12 +5,11 @@ MAX_RESULT_SET <- 10000
 
 #' Query EPC web API
 #'
-#' Makes an HTTP get request to retrieve EPC data from a user specified URL.
+#' Makes an HTTP get request to retrieve EPC data from a specified URL.
 #'
-#' @param url URL for the EPC API
+#' @param url URL for the EPC API including the required query string
 #'
-#' @return A list containing a list object of content data, and
-#' a list object containing the API response data.
+#' @return A list containing the data retrieved and API response
 #'
 #' @examples
 #' \dontrun{
@@ -34,9 +33,9 @@ query_epc_data <- function(url) {
   if (httr::http_error(resp)) {
     stop(
       sprintf(
-        "EPC API request failed [%s: %s]",
+        "EPC API request failed [%s]:\n%s",
         httr::status_code(resp),
-        httr::content(resp)
+        httr::content(resp, as = "text")
       ),
       call. = FALSE
     )
@@ -47,7 +46,7 @@ query_epc_data <- function(url) {
   }
 
   output_json <- httr::content(resp, "text", encoding = "UTF-8")
-  output <- if (output_json == "") "" else jsonlite::fromJSON(output_json)
+  output <- if (output_json %in% c("", "Resource not found.")) "Resource not found." else jsonlite::fromJSON(output_json)
 
   list(
     response = resp,

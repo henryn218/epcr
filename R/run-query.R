@@ -4,7 +4,7 @@
 #' parameters.
 #'
 #' @param record_type One of "domestic", "non-domestic" or "display"
-#' @param ... Named query parameters
+#' @param ... Named query parameters. The names should be
 #' @param size A query parameter indicating the size of the desired result set. If \code{paginated = TRUE},
 #' this indicates the desired number of results per page. The API defaults to a page size of 25 if
 #' not specified.
@@ -53,8 +53,7 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
     resp <- run_epc_query(url)
 
     if (!paginated || nrow(resp[["content"]]) == 0 && i == 0) {
-      resp_list[[1]] <- resp
-      break
+      return(resp)
     }
 
     if (nrow(resp[["content"]]) == 0) {
@@ -66,7 +65,7 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
     resp_list[[paste0("page_", i)]] <- resp
 
     from <- dots[["from"]]
-    dots[["from"]] <- ifelse(is.null(from), size, from + size)
+    dots[["from"]] <- if (is.null(from)) size else from + size
 
     if (nrow(resp[["content"]]) < size || dots[["from"]] >= MAX_RESULT_SET) {
       break
@@ -79,11 +78,7 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
   }
 
   content_df <- purrr::map_dfr(resp_list, "content")
-  response_list <- if (paginated && i > 0) {
-    purrr::map(resp_list, "response")
-  } else {
-    resp_list[[1]][["response"]]
-  }
+  response_list <- purrr::map(resp_list, "response")
 
   structure(
     list(

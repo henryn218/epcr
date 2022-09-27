@@ -9,7 +9,7 @@ search_epc_data(record_type, ..., size = NULL, paginated = FALSE)
 \arguments{
 \item{record_type}{One of "domestic", "non-domestic" or "display"}
 
-\item{...}{Named query parameters}
+\item{...}{Named query parameters. The names should be}
 
 \item{size}{A query parameter indicating the size of the desired result set. If \code{paginated = TRUE},
 this indicates the desired number of results per page. The API defaults to a page size of 25 if

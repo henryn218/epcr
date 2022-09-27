@@ -2,10 +2,16 @@
 % Please edit documentation in R/api-key.R
 \name{check_api_key}
 \alias{check_api_key}
-\title{Function to check}
+\title{Function to check API key}
 \usage{
 check_api_key(reset = FALSE)
 }
+\arguments{
+\item{reset}{A Boolean value indicating whether or not you want to reset the
+API key environment variable.}
+}
 \description{
-Function to check
+Checks for an environment variable called 'EPC_API_KEY'. If this is set, it returns to
+the parent frame. If it is not set, it prompts the user to set this before continuing.
+The function can be called interactively to reset the key using `Sys.setenv`.
 }
