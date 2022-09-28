@@ -36,3 +36,22 @@ test_that("EPC data query returns a response", {
   expect_s3_class(output[["content"]][["rows"]], "data.frame")
 
 })
+
+test_that("only valid filters are accepted", {
+
+  parameters <- list(address = "10 The High Street",
+                     `local-authority` = "E000000000")
+
+  expect_null(validate_query(parameters))
+
+})
+
+test_that("invalid filters raise an error", {
+
+  parameters <- list(address = "10 The High Street",
+                     ward = "Riverside")
+
+  expect_error(validate_query(parameters),
+               "Query parameter not recognised.\nSee https://epc.opendatacommunities.org/docs/api for valid filters.")
+
+})

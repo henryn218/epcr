@@ -33,6 +33,7 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
   search_url <- paste0(BASE_URL, sprintf("/%s/search", record_type))
 
   dots <- list(...)
+  validate_query(dots)
 
   if (!is.null(size)) {
     dots[["size"]] <- size

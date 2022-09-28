@@ -83,3 +83,37 @@ create_search_url <- function(search_url, parameters = NULL) {
                    query = query)
 
 }
+
+#' Validate query parameters
+#'
+#' Checks that valid filters are applied.
+#'
+#' @param parameters A named list of query parameters corresponding to filters described
+#' in the EPC API documentation.
+#'
+#' @keywords internal
+#'
+validate_query <- function(parameters) {
+
+  check <- all(
+    names(parameters) %in% c("address",
+                             "postcode",
+                             "energy-band",
+                             "local-authority",
+                             "constituency",
+                             "property-type",
+                             "floor-area",
+                             "from-year",
+                             "from-month",
+                             "to-year",
+                             "to-month",
+                             "size",
+                             "from")
+  )
+
+  if (!check) {
+    stop("Query parameter not recognised.\nSee https://epc.opendatacommunities.org/docs/api for valid filters.",
+         call. = FALSE)
+  }
+
+}
