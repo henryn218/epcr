@@ -29,6 +29,10 @@ LMK key. \code{get_epc_certificate} and \code{get_epc_recommendations} are wrapp
 functions for \code{get_data_for_lmk_key} with \code{api_type} set to "certificate"
 and "recommendations" respectively.
 }
+\details{
+Note that this function will prompt you for a valid API key. You will need a registered account before you can
+access the data. See the \href{https://epc.opendatacommunities.org/docs/api}{documentation} for further guidance.
+}
 \examples{
 \dontrun{
 get_data_for_lmk_key("domestic", "certificate", "887164559962017031316220145408873")

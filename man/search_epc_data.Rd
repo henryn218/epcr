@@ -51,6 +51,10 @@ a list containing API response objects for each page.
 Queries the EPC API to retrieve EPC data filtered for user-specified
 parameters.
 }
+\details{
+Note that this function will prompt you for a valid API key. You will need a registered account before you can
+access the data. See the \href{https://epc.opendatacommunities.org/docs/api}{documentation} for further guidance.
+}
 \examples{
 \dontrun{
 search_epc_data("domestic", postcode = "SW1A")

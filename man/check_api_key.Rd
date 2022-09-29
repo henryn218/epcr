@@ -11,9 +11,9 @@ check_api_key(reset = FALSE)
 API key environment variable.}
 }
 \description{
-Checks for an environment variable called 'EPC_API_KEY'. If this is set, it returns to
+Checks for a key called 'EPC_API_KEY' using the \code{keyring} package, or an environment variable called 'EPC_API_KEY'. If either is set, it returns to
 the parent frame. If it is not set, it prompts the user to set this before continuing.
-The function can be called interactively to reset the key.
+The function can be called interactively to reset the key using \code{Sys.setenv}.
 }
 \details{
 Note that you should use the Base64-encoded account identifier composed of your email address and api-key as

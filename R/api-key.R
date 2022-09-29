@@ -1,8 +1,8 @@
 #' Function to check API key
 #'
-#' Checks for an environment variable called 'EPC_API_KEY'. If this is set, it returns to
+#' Checks for a key called 'EPC_API_KEY' using the \code{keyring} package, or an environment variable called 'EPC_API_KEY'. If either is set, it returns to
 #' the parent frame. If it is not set, it prompts the user to set this before continuing.
-#' The function can be called interactively to reset the key.
+#' The function can be called interactively to reset the key using \code{Sys.setenv}.
 #'
 #' Note that you should use the Base64-encoded account identifier composed of your email address and api-key as
 #' provided in the \href{https://epc.opendatacommunities.org/docs/api/domestic#using_this_api}{documentation}.
@@ -25,7 +25,7 @@ check_api_key <- function(reset = FALSE) {
     }
   }
 
-  message("Consider storing API credentials using the 'keyring' package.")
+  message("Consider storing API credentials using the 'keyring' package, specifying the `service` argument as 'EPC_API_KEY'.")
 
   if (Sys.getenv("EPC_API_KEY") != "" && !reset) {
     return(invisible())

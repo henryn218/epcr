@@ -3,6 +3,9 @@
 #' Queries the EPC API to retrieve EPC data filtered for user-specified
 #' parameters.
 #'
+#' Note that this function will prompt you for a valid API key. You will need a registered account before you can
+#' access the data. See the \href{https://epc.opendatacommunities.org/docs/api}{documentation} for further guidance.
+#'
 #' @param record_type One of "domestic", "non-domestic" or "display"
 #' @param ... Named query parameters. These are outlined in detail in the \href{https://epc.opendatacommunities.org/docs/api}{EPC API documentation}.
 #'
@@ -117,6 +120,9 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
 #' LMK key. \code{get_epc_certificate} and \code{get_epc_recommendations} are wrapper
 #' functions for \code{get_data_for_lmk_key} with \code{api_type} set to "certificate"
 #' and "recommendations" respectively.
+#'
+#' Note that this function will prompt you for a valid API key. You will need a registered account before you can
+#' access the data. See the \href{https://epc.opendatacommunities.org/docs/api}{documentation} for further guidance.
 #'
 #' @param record_type One of "domestic", "non-domestic" or "display"
 #' @param api_type One of "certificate" or "recommendations"
