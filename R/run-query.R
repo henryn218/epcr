@@ -53,6 +53,8 @@
 #'
 search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
 
+  check_api_key()
+
   search_url <- paste0(BASE_URL, sprintf("/%s/search", record_type))
 
   dots <- list(...)
@@ -139,6 +141,8 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
 #' @export
 #'
 get_data_for_lmk_key <- function(record_type, api_type, lmk_key) {
+
+  check_api_key()
 
   url <- paste0(BASE_URL, sprintf("/%s/%s/%s",
                                   record_type,

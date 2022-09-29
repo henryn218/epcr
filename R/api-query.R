@@ -17,7 +17,6 @@ MAX_RESULT_SET <- 10000
 #'
 query_epc_data <- function(url) {
 
-  check_api_key()
   resp <- httr::GET(url,
                     httr::add_headers(Authorization = paste("Basic",
                                                             Sys.getenv("EPC_API_KEY")),
