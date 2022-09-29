@@ -4,7 +4,27 @@
 #' parameters.
 #'
 #' @param record_type One of "domestic", "non-domestic" or "display"
-#' @param ... Named query parameters. The names should be
+#' @param ... Named query parameters. These are outlined in detail in the \href{https://epc.opendatacommunities.org/docs/api}{EPC API documentation}.
+#'
+#' Possible query parameters are:
+#' \itemize{
+#'  \item{\code{address}: An arbitrary search string such as 'liverpool road'}
+#'  \item{\code{postcode}: An arbitrary postcode or prefix string of e.g. 'P', 'PR', 'PR8' or 'PR82EG'}
+#'  \item{\code{`local-authority`}: A local authority code of the form E00000000 for England and W00000000 for Wales}
+#'  \item{\code{`property-type`}: Any of 'bungalow', 'flat', 'house', 'maisonette' or 'park home'}
+#'  \item{\code{`floor-area`}: Any of 'unknown', 's', 'm', 'l', 'xl', 'xxl' or 'xxxl', corresponding to size categories enumerated in the documentation}
+#'  \item{\code{`energy-band`}: Any of 'a', 'b', 'c', 'd', 'e', 'f', 'g'}
+#'  }
+#'  If multiple values for a particular filter are required, simply specify that argument as many times as required.
+#'  For example, if multiple energy bands are required: \code{search_epc_data("domestic", `energy-band` = "a", `energy-band` = "b")}.
+#'
+#'  The following filters are used to specify lodgement date:
+#'  \itemize{
+#'  \item{\code{from-month}: A numeric month identifier 1-12, to establish the start of a date range, where 1 is January and 12 is December. If no from-month parameter is supplied 1 (January) is assumed.}
+#'  \item{\code{from-year}: A numeric year identifier to estalish the start of a date range between 2008 and 2022 e.g. 2015. If no year parameter is supplied 2008 is assumed.}
+#'  \item{\code{to-month}: A numeric month identifier 1-12, to establish the end of a date range, where 1 is January and 12 is December. If no to-month parameter is supplied then 12 is assumed.}
+#'  \item{\code{to-year}: A numeric year identifier between 2008 and 2022 e.g. 2015. If no to-year parameter is supplied then 2022 is assumed.}
+#'  }
 #' @param size A query parameter indicating the size of the desired result set. If \code{paginated = TRUE},
 #' this indicates the desired number of results per page. The API defaults to a page size of 25 if
 #' not specified.
@@ -12,7 +32,7 @@
 #' Note that the API can handle result sets of up to 10,000 with a maximum page size of
 #' 5,000. If fewer than 5,000 results are expected, it may be easier to leave this set to
 #' FALSE (the default) and specify a sufficiently large \code{size} parameter to return a non-paginated
-#' result set. Otherwise, set this to TRUE and set the \code{size} argument to to indicate the
+#' result set. Otherwise, set this to TRUE and set the \code{size} argument to indicate the
 #' number of results per page (up to a maximum of 5,000, which would return two pages for a
 #' query returning more than 5,000 results).
 #'
@@ -33,7 +53,6 @@ search_epc_data <- function(record_type, ..., size = NULL, paginated = FALSE) {
   search_url <- paste0(BASE_URL, sprintf("/%s/search", record_type))
 
   dots <- list(...)
-  validate_query(dots)
 
   if (!is.null(size)) {
     dots[["size"]] <- size

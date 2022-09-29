@@ -13,5 +13,9 @@ API key environment variable.}
 \description{
 Checks for an environment variable called 'EPC_API_KEY'. If this is set, it returns to
 the parent frame. If it is not set, it prompts the user to set this before continuing.
-The function can be called interactively to reset the key using `Sys.setenv`.
+The function can be called interactively to reset the key.
+}
+\details{
+Note that you should use the Base64-encoded account identifier composed of your email address and api-key as
+provided in the \href{https://epc.opendatacommunities.org/docs/api/domestic#using_this_api}{documentation}.
 }

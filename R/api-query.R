@@ -20,7 +20,6 @@ MAX_RESULT_SET <- 10000
 #' @importFrom httr GET add_headers user_agent http_error status_code http_type content
 #' @importFrom jsonlite fromJSON
 #'
-#' @export
 query_epc_data <- function(url) {
 
   check_api_key()
@@ -71,6 +70,8 @@ query_epc_data <- function(url) {
 #' @importFrom utils URLencode
 #'
 create_search_url <- function(search_url, parameters = NULL) {
+
+  validate_query(parameters)
 
   query <- utils::URLencode(
     paste(
