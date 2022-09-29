@@ -6,6 +6,7 @@
 #' query ("contents") and a response object ("response")
 #'
 #' @keywords internal
+#' @noRd
 #'
 process_response <- function(parsed_resp) {
 
@@ -41,6 +42,8 @@ process_response <- function(parsed_resp) {
 #' set according to the API documentation
 #'
 #' @keywords internal
+#'
+#' @noRd
 #'
 #' @importFrom purrr map imap_dfc
 #'

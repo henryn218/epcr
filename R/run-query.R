@@ -186,6 +186,7 @@ get_epc_recommendations <- function(record_type, lmk_key) {
 #' query ("contents") and a response object ("response")
 #'
 #' @keywords internal
+#' @noRd
 #'
 run_epc_query <- function(url) {
 

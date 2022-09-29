@@ -11,12 +11,7 @@ MAX_RESULT_SET <- 10000
 #'
 #' @return A list containing the data retrieved and API response
 #'
-#' @examples
-#' \dontrun{
-#' # Default domestic query
-#' query_epc_data("https://epc.opendatacommunities.org/api/v1/domestic/search")
-#' }
-#'
+#' @noRd
 #' @importFrom httr GET add_headers user_agent http_error status_code http_type content
 #' @importFrom jsonlite fromJSON
 #'
@@ -64,6 +59,7 @@ query_epc_data <- function(url) {
 #' @return A URL containing a query string
 #'
 #' @keywords internal
+#' @noRd
 #'
 #' @importFrom purrr imap
 #' @importFrom httr modify_url
@@ -92,6 +88,7 @@ create_search_url <- function(search_url, parameters = NULL) {
 #' @param parameters A named list of query parameters corresponding to filters described
 #' in the EPC API documentation.
 #'
+#' @noRd
 #' @keywords internal
 #'
 validate_query <- function(parameters) {
