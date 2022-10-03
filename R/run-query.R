@@ -20,11 +20,12 @@
 #'  }
 #'  If multiple values for a particular filter are required, simply specify that argument as many times as required.
 #'  For example, if multiple energy bands are required: \code{search_epc_data("domestic", `energy-band` = "a", `energy-band` = "b")}.
+#'  Note that this only works for property type, energy band and floor area.
 #'
 #'  The following filters are used to specify lodgement date:
 #'  \itemize{
 #'  \item{\code{from-month}: A numeric month identifier 1-12, to establish the start of a date range, where 1 is January and 12 is December. If no from-month parameter is supplied 1 (January) is assumed.}
-#'  \item{\code{from-year}: A numeric year identifier to estalish the start of a date range between 2008 and 2022 e.g. 2015. If no year parameter is supplied 2008 is assumed.}
+#'  \item{\code{from-year}: A numeric year identifier to establish the start of a date range between 2008 and 2022 e.g. 2015. If no year parameter is supplied 2008 is assumed.}
 #'  \item{\code{to-month}: A numeric month identifier 1-12, to establish the end of a date range, where 1 is January and 12 is December. If no to-month parameter is supplied then 12 is assumed.}
 #'  \item{\code{to-year}: A numeric year identifier between 2008 and 2022 e.g. 2015. If no to-year parameter is supplied then 2022 is assumed.}
 #'  }

@@ -125,7 +125,6 @@ set_data_types <- function(resp_contents) {
 
 }
 
-#' @importFrom utils head
 #' @export
 print.epc_api <- function(x, ...) {
 
@@ -140,7 +139,7 @@ print.epc_api <- function(x, ...) {
     cat("\nURL:\n\n ", x$response$url, "\n\nResult:\n\n")
   }
 
-  print(utils::head(x$content))
+  print(x$content)
   invisible(x)
 
 }

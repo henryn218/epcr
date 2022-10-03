@@ -10,6 +10,8 @@
 #' @param reset A Boolean value indicating whether or not you want to reset the
 #' API key environment variable.
 #'
+#' @importFrom rlang inform
+#'
 #' @export
 check_api_key <- function(reset = FALSE) {
 
@@ -25,7 +27,9 @@ check_api_key <- function(reset = FALSE) {
     }
   }
 
-  message("Consider storing API credentials using the 'keyring' package, specifying the `service` argument as 'EPC_API_KEY'.")
+  rlang::inform("Consider storing API credentials using the 'keyring' package, specifying the `service` argument as 'EPC_API_KEY'.",
+                .frequency = "once",
+                .frequency_id = "keyring-msg")
 
   if (Sys.getenv("EPC_API_KEY") != "" && !reset) {
     return(invisible())
